@@ -8,7 +8,6 @@ class BaseModel:
     """ Base model class """
     def __init__(self, *args, **kwargs):
         if kwargs:
-            print("Not kwargs")
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key in ["created_at", "updated_at"]:
@@ -23,7 +22,7 @@ class BaseModel:
     def __str__(self):
         return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
     def save(self):
-        self.updated_at = datetime.now().isoformat()
+        self.updated_at = datetime.now()
         storage.save()
     def to_dict(self):
         _all = self.__dict__.copy()
